@@ -59,18 +59,19 @@ app.post('/', async (req, res, next) => {
             slug = nanoid(5);
         }
         console.log("Values to be added");
-        console.log(url);
-        console.log(slug);
+        // console.log(url);
+        // console.log(slug);
         data = await dbcall.graphQlmutation(url, slug);
         if (data.error) {
             const error = new Error(data.error);
             error.statusCode = 422;
             throw error;
         }
-        data['shorturl'] = `localhost:3000/${data.slug}`;
+        console.log(data);
+        data.data['shorturl'] = `https://shorturlsvivek.herokuapp.com/${slug}`;
         res.status(200).json({
             message: "Short Url created successfully",
-            data: data
+            data: data.data
         })
     }
     catch (err) {

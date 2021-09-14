@@ -26,7 +26,7 @@ exports.graphQlquery = async (slug) => {
         .then(res => {
             let body = JSON.parse(res.body);
             data = body.data.urls_connection.edges;
-            console.log(body.data.urls_connection.edges);
+            // console.log(body.data.urls_connection.edges);
         })
         .catch(err => {
             console.log(err.statusCode);
